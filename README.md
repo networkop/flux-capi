@@ -52,5 +52,23 @@ helm install --namespace default -f flux-values.yml flux-capd fluxcd/flux
 
 ## Test connectivity to the Kubernetes Dashboard
 
+Find out what IP has been assigned to the ingress:
+
 ```
+ip=$(KUBECONFIG=./capd.kubeconfig kubectl get ingress -n monitoring dashboard-kubernetes-dashboard -ojson  | jq -r '.status.loadBalancer.ingress[0].ip')
+echo $ip
+172.17.0.200
 ```
+
+Extract token for the admin user:
+
+```
+user=$(KUBECONFIG=./capd.kubeconfig kubectl get secret -n monitoring | grep admin-user | awk '{print $1}')
+secret=$(KUBECONFIG=./capd.kubeconfig kubectl -n monitoring get secret $user -ojson | jq -r '.data.token')
+echo $secret | base64 -d
+eyJhbGciOiJS...
+```
+
+Use the above secret to authenticate with the k8s dashboard:
+
+![](./dashboard.png)

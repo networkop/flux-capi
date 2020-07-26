@@ -23,7 +23,7 @@ extraVolumes:
     secretName: capd-kubeconfig
 git:
   email: support@example.com
-  url: https://github.com/networkop/capi-flux
+  url: https://github.com/networkop/flux-capi
   path: manifests/
   readonly: true
   pollInterval: 5s
