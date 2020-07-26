@@ -1,4 +1,4 @@
-# Instructions how to use flux to bootstrap Cluster API workload clusters
+# How to use flux to bootstrap Cluster API workload clusters
 
 Cluster API workload clusters are deployed with very minimal configuration (only DNS addon is included). However, every cluster requires a number of extra addons to be installed before it can become useful, e.g.:
 
