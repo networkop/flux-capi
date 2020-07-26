@@ -1,0 +1,16 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: dashboard
+  namespace: monitoring
+spec:
+  releaseName: dashboard
+  chart:
+    repository: https://kubernetes.github.io/dashboard/
+    name: kubernetes-dashboard
+    version: 2.3.0
+  values:
+    ingress:
+      enabled: true
+    metrics-server:
+      enabled: true

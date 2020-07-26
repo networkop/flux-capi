@@ -1,0 +1,38 @@
+---
+additionalArgs:
+- --kube-config=/etc/kube/config
+allowedNamespaces:
+- kube-system
+- flux
+- monitoring
+clusterRole:
+  create: false
+  name: null
+extraEnvs:
+- name: KUBECONFIG
+  value: /etc/kube/config
+extraVolumeMounts:
+- mountPath: /etc/kube
+  name: kubeconfig
+extraVolumes:
+- name: kubeconfig
+  secret:
+    items:
+    - key: value
+      path: config
+    secretName: capd-kubeconfig
+git:
+  email: support@example.com
+  url: https://github.com/networkop/capi-flux
+  path: manifests/
+  readonly: true
+  pollInterval: 5s
+rbac:
+  create: false
+  pspEnabled: false
+clusterrole:
+  create: false
+serviceAccount:
+  annotations: {}
+  create: false
+  name: null

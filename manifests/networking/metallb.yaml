@@ -1,0 +1,18 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: kube-system
+spec:
+  releaseName: metallb
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: metallb
+    version: 0.1.17
+  values:
+    configInline:
+      address-pools:
+      - name: my-ip-space
+        protocol: layer2
+        addresses:
+        - 172.17.0.200-172.17.0.210

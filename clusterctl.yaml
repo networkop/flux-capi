@@ -1,0 +1,6 @@
+# This is to avoid picking overrides in ~/.cluster-api/overrides
+overridesFolder: "/tmp"
+providers:
+  - name: docker
+    url: /tmp/infrastructure-docker/latest/infrastructure-components.yaml
+    type: InfrastructureProvider
